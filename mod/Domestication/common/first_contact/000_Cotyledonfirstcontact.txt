@@ -1,0 +1,46 @@
+# Need to overide the first contact stages to include cases for the domesticator civic. Will have to reaserch alternate ways implement this in the future
+# TODO: write custom events specific for civic in:
+# default_hostile_ship_stage  
+# hostile_first_contact_attempted
+
+
+# Overiding the base_contact_set to add civic specific summary
+base_contact_set = {
+	icon = GFX_firstcontact_icon_starter
+	picture = GFX_evt_star_chart
+	difficulty = 2
+
+	stage_event = {
+		summary =  fcsum_base_contact_set_summary
+		event_weight = {
+			weight = 10
+			modifier = {
+                factor = 0
+                this.owner = {
+            	        NOT = {has_valid_civic = civic_domesticators}
+                    }    
+                }
+		}
+		event = first_contact.1 #country event for owner of first contact site
+	}
+    stage_event = {
+        summary = fcsum_base_contact_domesticators_summary
+        event_weight = { 
+           weight = 0
+            modifier = {
+                weight = 10
+                this.owner = {
+            	        has_valid_civic = civic_domesticators
+                    }    
+                }
+        }
+        event = first_contact.1 #country event for owner of first contact site
+    }
+
+	on_roll_failed = {
+		#nah
+		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = no_events }
+        
+	}
+}
+
