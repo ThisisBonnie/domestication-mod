@@ -17,7 +17,7 @@ base_contact_set = {
 			modifier = {
                 factor = 0
                 this.owner = {
-            	        NOT = {has_valid_civic = civic_domesticators}
+            	        is_domesticator_or_protectorate = no
                     }    
                 }
 		}
@@ -30,7 +30,7 @@ base_contact_set = {
             modifier = {
                 weight = 10
                 this.owner = {
-            	        has_valid_civic = civic_domesticators
+            	        is_domesticator_or_protectorate = yes
                     }    
                 }
         }

@@ -41,7 +41,7 @@ first_contact_event = {
 							is_militarist = yes
 						}
 						is_xenophile = no
-						has_valid_civic = civic_domesticators
+						is_domesticator_or_protectorate = yes
 					}
 				}
 			}
@@ -86,7 +86,7 @@ first_contact_event = {
 	}
 	desc = {
 		trigger = {
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 			NOT = { contact_country = { is_country_type = dragon_dummy}}
 		}
 		text = first_contact.1.desc.domesticator
@@ -171,14 +171,14 @@ first_contact_event = {
 	desc = {
 		trigger = { 
 			first_contact_default_desc = yes
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.desc
 	}
 	desc = {
 		trigger = {
 			first_contact_militarist_desc = yes
-			NOT = { owner = { has_valid_civic = civic_domesticators } 
+			owner = { is_domesticator_or_protectorate = no } 
 			}
 		}
 		text = first_contact.5.militarist.desc
@@ -186,21 +186,21 @@ first_contact_event = {
 	desc = {
 		trigger = { 
 			first_contact_pacifist_desc = yes 
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.pacifist.desc
 	}
 	desc = {
 		trigger = { 
 			first_contact_spiritualist_desc = yes
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.spiritualist.desc
 	}
 	desc = {
 		trigger = {
 			first_contact_materialist_desc = yes 
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.materialist.desc
 	}
@@ -211,26 +211,26 @@ first_contact_event = {
 	desc = {
 		trigger = {
 			first_contact_xenophile_desc = yes 
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.xenophile.desc
 	}
 	desc = {
 		trigger = {
 			first_contact_authoritarian_desc = yes
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.authoritarian.desc
 	}
 	desc = {
 		trigger = {
 			first_contact_egalitarian_desc = yes 
-			NOT = { owner = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no } 
 		}
 		text = first_contact.5.egalitarian.desc
 	}
 	desc = {
-		trigger = { owner = { has_valid_civic = civic_domesticators } }
+		trigger = { owner = { is_domesticator_or_protectorate = yes } }
 		text = first_contact.5.domesticators.desc
 	}
 	picture = GFX_evt_unknown_ships
@@ -308,14 +308,14 @@ first_contact_event = {
 		name = { 
 			trigger = {
 				owner = {
-					NOT = { has_valid_civic = civic_domesticators } 
+					is_domesticator_or_protectorate = no 
 				}
 			}
 			text = first_contact.15.B 
 		}
 		name = { 
 			trigger = {
-				owner = { has_valid_civic = civic_domesticators } 
+				owner = { is_domesticator_or_protectorate = yes } 
 			}
 			text = first_contact.15.domesticators
 		}
@@ -328,7 +328,7 @@ first_contact_event = {
 			owner = {
 				OR = {
 					has_policy_flag = first_contact_attack_allowed
-					has_valid_civic = civic_domesticators 
+					is_domesticator_or_protectorate = yes 
 				} 
 			}
 		}
@@ -413,7 +413,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_default_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -421,7 +421,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_default_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -431,7 +431,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -442,7 +442,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_militarist_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -450,7 +450,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_militarist_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -460,7 +460,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -471,7 +471,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_pacifist_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -479,7 +479,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_pacifist_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -489,7 +489,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -500,7 +500,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_spiritualist_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -508,7 +508,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_spiritualist_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -518,7 +518,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -529,7 +529,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_materialist_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -537,7 +537,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_materialist_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -547,7 +547,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -584,7 +584,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_xenophile_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -592,7 +592,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_xenophile_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -602,7 +602,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -613,7 +613,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_authoritarian_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -621,7 +621,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_authoritarian_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -631,7 +631,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -642,7 +642,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_egalitarian_desc = yes
 			owner = { has_policy_flag = first_contact_proactive }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -650,7 +650,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_egalitarian_desc = yes
 			owner = { has_policy_flag = first_contact_cautious }
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -660,7 +660,7 @@ first_contact_event = {
 			owner = {
 				has_policy_flag = first_contact_attack_allowed
 				is_gestalt = no
-				NOT = {has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 			}
 		}
 	}
@@ -670,7 +670,7 @@ first_contact_event = {
 		text = first_contact.10.Domesticators.desc.proactive
 		trigger = {
 			owner = {
-				has_valid_civic = civic_domesticators
+				is_domesticator_or_protectorate = yes
 				has_policy_flag = first_contact_proactive
 			}
 		}
@@ -679,7 +679,7 @@ first_contact_event = {
 		text = first_contact.10.Domesticators.desc.cautious
 		trigger = {
 			owner = {
-				has_valid_civic = civic_domesticators
+				is_domesticator_or_protectorate = yes
 				has_policy_flag = first_contact_cautious
 			}
 		}
@@ -767,14 +767,14 @@ first_contact_event = {
 		name = { 
 			trigger = {
 				owner = {
-					NOT = { has_valid_civic = civic_domesticators } 
+					is_domesticator_or_protectorate = no 
 				}
 			}
 			text = first_contact.10.B 
 		}
 		name = { 
 			trigger = {
-				owner = { has_valid_civic = civic_domesticators } 
+				owner = { is_domesticator_or_protectorate = yes } 
 			}
 			text = first_contact.10.domesticators
 		}
@@ -802,7 +802,7 @@ first_contact_event = {
 			owner = { 
 				OR = {
 					has_policy_flag = first_contact_attack_allowed 
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 		}
@@ -867,7 +867,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_default_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -876,7 +876,7 @@ first_contact_event = {
 			first_contact_default_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -887,7 +887,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_militarist_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -896,7 +896,7 @@ first_contact_event = {
 			first_contact_militarist_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -907,8 +907,8 @@ first_contact_event = {
 		trigger = {
 			first_contact_pacifist_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
-		}
+			is_domesticator_or_protectorate = no
+		}	
 	}
 	desc = {
 		text = first_contact.15.pacifist.desc.no_planets
@@ -916,7 +916,7 @@ first_contact_event = {
 			first_contact_pacifist_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -927,7 +927,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_spiritualist_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -936,7 +936,7 @@ first_contact_event = {
 			first_contact_spiritualist_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -947,7 +947,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_materialist_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -956,7 +956,7 @@ first_contact_event = {
 			first_contact_materialist_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -967,7 +967,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_xenophobe_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -976,7 +976,7 @@ first_contact_event = {
 			first_contact_xenophobe_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -987,7 +987,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_xenophile_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -996,7 +996,7 @@ first_contact_event = {
 			first_contact_xenophile_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -1007,7 +1007,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_authoritarian_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -1016,7 +1016,7 @@ first_contact_event = {
 			first_contact_authoritarian_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -1027,7 +1027,7 @@ first_contact_event = {
 		trigger = {
 			first_contact_egalitarian_desc = yes
 			exists = event_target:known_planet
-			NOT = { owner = { has_valid_civic = civic_domesticators }}
+			is_domesticator_or_protectorate = no
 		}
 	}
 	desc = {
@@ -1036,7 +1036,7 @@ first_contact_event = {
 			first_contact_egalitarian_desc = yes
 			NAND = {
 				exists = event_target:known_planet 
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 	}
@@ -1046,14 +1046,14 @@ first_contact_event = {
 		text = first_contact.15.domesticator.desc
 		trigger = {
 			exists = event_target:known_planet
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 		}
 	}
 	desc = {
 		text = first_contact.15.domesticator.desc.no_planets
 		trigger = {
 			NOT = { exists = event_target:known_planet }
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 		}
 	}
 
@@ -1175,14 +1175,14 @@ first_contact_event = {
 		name = { 
 			trigger = {
 				owner = {
-					NOT = { has_valid_civic = civic_domesticators } 
+					is_domesticator_or_protectorate = no 
 				}
 			}
 			text = first_contact.15.B 
 		}
 		name = { 
 			trigger = {
-				owner = { has_valid_civic = civic_domesticators } 
+				owner = { is_domesticator_or_protectorate = yes } 
 			}
 			text = first_contact.15.domesticators
 		}
@@ -1209,7 +1209,7 @@ first_contact_event = {
 			owner = {
 				OR = {
 					has_policy_flag = first_contact_attack_allowed
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				} 
 			}
 		}
@@ -1296,7 +1296,7 @@ first_contact_event = {
 			owner = { 
 				AND ={
 				has_policy_flag = first_contact_proactive
-				NOT = { has_valid_civic = civic_domesticators }
+				is_domesticator_or_protectorate = no
 				}
 			}
 		}
@@ -1307,7 +1307,7 @@ first_contact_event = {
 			owner = { 
 				NOR = { 
 					has_policy_flag = first_contact_proactive 
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				} 
 			}
 		}
@@ -1315,7 +1315,7 @@ first_contact_event = {
 	desc = {
 		text = first_contact.50.desc.domesticators
 		trigger = {
-			owner = {has_valid_civic = civic_domesticators }
+			owner = {is_domesticator_or_protectorate = yes }
 		}
 	}
 	picture = GFX_evt_mysterious_signal
@@ -1405,7 +1405,7 @@ first_contact_event = {
 			owner = { 
 				OR = {
 					has_policy_flag = first_contact_proactive
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 		}
@@ -1442,7 +1442,7 @@ first_contact_event = {
 			owner = { 
 				OR = { 
 					has_policy_flag = first_contact_cautious 
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				} 
 			}
 		}
@@ -1456,7 +1456,7 @@ first_contact_event = {
 				owner = {
 					is_machine_empire = no
 					has_policy_flag = first_contact_cautious
-					NOT = { has_valid_civic = civic_domesticators}
+					is_domesticator_or_protectorate = no
 				}
 			}
 			text = first_contact.50.C1
@@ -1465,7 +1465,7 @@ first_contact_event = {
 			trigger = { 
 				owner = {
 					is_machine_empire = no
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 			text = first_contact.50.C1.domesticators
@@ -1509,7 +1509,7 @@ first_contact_event = {
 			owner = { 
 				AND = {
 					is_gestalt = no
-					NOT = { has_valid_civic = civic_domesticators }
+					is_domesticator_or_protectorate = no
 				}  
 			}
 			contact_country = { is_gestalt = no }
@@ -1538,7 +1538,7 @@ first_contact_event = {
 			owner = { 
 				AND = {
 					is_gestalt = no
-					NOT = { has_valid_civic = civic_domesticators }
+					is_domesticator_or_protectorate = no
 				}   
 			}
 			contact_country = { is_hive_empire = yes }
@@ -1559,7 +1559,7 @@ first_contact_event = {
 			owner = { 
 				AND = {
 					is_gestalt = no
-					NOT = { has_valid_civic = civic_domesticators }
+					is_domesticator_or_protectorate = no
 				} 	
 			}
 			contact_country = { is_machine_empire = yes }
@@ -1577,7 +1577,7 @@ first_contact_event = {
 	desc = {
 		text = first_contact.60.desc.default.domesticators
 		trigger = {
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 			contact_country = { is_hive_empire = no }
 		}
 	}
@@ -1585,7 +1585,7 @@ first_contact_event = {
 	desc = {
 		text = first_contact.60.desc.hive.domesticators
 		trigger = {
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 			contact_country = { is_gestalt = no }
 		}
 	}
@@ -1593,7 +1593,7 @@ first_contact_event = {
 	desc = {
 		text = first_contact.60.desc.machine.domesticators
 		trigger = {
-			owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = yes }
 			contact_country = { is_machine_empire = yes }
 		}
 	}
@@ -1602,8 +1602,8 @@ first_contact_event = {
 	# desc = {
 	# 	text = first_contact.60.desc.domesticators.domesticators
 	# 	trigger = {
-	# 		owner = { has_valid_civic = civic_domesticators }
-	# 		contact_country = { has_valid_civic = civic_domesticators }
+	# 		owner = { is_domesticator_or_protectorate = yes }
+	# 		contact_country = { is_domesticator_or_protectorate = yes }
 	# 	}
 	# }
 	show_sound = {
@@ -1683,7 +1683,7 @@ first_contact_event = {
 				owner = { 
 					NAND = { 
 							has_policy_flag = first_contact_proactive
-							has_valid_civic = civic_domesticators
+							is_domesticator_or_protectorate = yes
 					} 
 				}
 			}
@@ -1694,7 +1694,7 @@ first_contact_event = {
 				owner = { 
 					AND = {
 						has_policy_flag = first_contact_proactive
-						NOT = { has_valid_civic = civic_domesticators }
+						is_domesticator_or_protectorate = no
 				 	}
 				}
 			}
@@ -1703,7 +1703,7 @@ first_contact_event = {
 		name = {
 			trigger = {
 				owner = {
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 			text = first_contact.60.A.domesticators
@@ -1727,7 +1727,7 @@ first_contact_event = {
 				NOR = {
 					is_xenophobe = yes
 					is_homicidal = yes
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 		}
@@ -1736,7 +1736,7 @@ first_contact_event = {
 	desc = {
 		trigger = {
 			owner = {
-				has_valid_civic = civic_domesticators
+				is_domesticator_or_protectorate = yes
 			}
 		}
 		text = first_contact.100.desc.domesticators
@@ -1823,14 +1823,14 @@ first_contact_event = {
 
 	desc = { 
 		trigger = {
-			NOT = { this.owner = { has_valid_civic = civic_domesticators } }
+			this.owner = { is_domesticator_or_protectorate = no }
 		}
 		text = first_contact.103.desc 
 	}
 
 	desc = { 
 		trigger = {
-			this.owner = { has_valid_civic = civic_domesticators }
+			this.owner = { is_domesticator_or_protectorate = yes }
 		}
 		text = first_contact.103.desc.domesticators 
 	}
@@ -1864,7 +1864,7 @@ first_contact_event = {
 			owner = {
 				OR = {
 					is_egalitarian = no
-					NOT = { has_valid_civic = civic_domesticators  }
+					is_domesticator_or_protectorate = no
 				}
 				
 			}
@@ -2490,14 +2490,14 @@ first_contact_event = {
 	option = {
 		name = { 
 			trigger = {
-				owner = { NOT = { has_valid_civic = civic_domesticators } }
+				owner = { is_domesticator_or_protectorate = no }
 			} 
 			text = first_contact.250.A
 		}
 		name = {
 			trigger = {
 				owner = {
-					has_valid_civic = civic_domesticators
+					is_domesticator_or_protectorate = yes
 				}
 			}
 			text = first_contact.250.A.domesticators
@@ -2583,7 +2583,7 @@ first_contact_event = {
 			}
 		}
 		trigger = {
-			NOT = { owner = { has_valid_civic = civic_domesticators }
+			owner = { is_domesticator_or_protectorate = no }
 			}
 		}
 		hidden_effect = {
@@ -3343,7 +3343,7 @@ first_contact_event = {
 				owner = { 
 					NOR = {
 						is_gestalt = yes
-						has_valid_civic = civic_domesticators
+						is_domesticator_or_protectorate = yes
 					} 
 				}
 			}
@@ -3362,7 +3362,7 @@ first_contact_event = {
 		name = {
 			text = first_contact.320.A.domesticators
 			trigger = {
-				owner = { has_valid_civic = civic_domesticators }
+				owner = { is_domesticator_or_protectorate = yes }
 			}
 		}
 		custom_tooltip = first_contact.320.A.tooltip
@@ -3453,7 +3453,7 @@ first_contact_event = {
 			}
 		}
 		trigger = {
-			owner = { NOT = { has_valid_civic = civic_domesticators } }
+			owner = { is_domesticator_or_protectorate = no }
 		}
 		hidden_effect = {
 			contact_country = {
