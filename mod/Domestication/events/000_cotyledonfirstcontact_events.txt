@@ -179,7 +179,6 @@ first_contact_event = {
 		trigger = {
 			first_contact_militarist_desc = yes
 			owner = { is_domesticator_or_protectorate = no } 
-			}
 		}
 		text = first_contact.5.militarist.desc
 	}
@@ -2489,17 +2488,11 @@ first_contact_event = {
 
 	option = {
 		name = { 
-			trigger = {
-				owner = { is_domesticator_or_protectorate = no }
-			} 
+			trigger = { owner = { is_domesticator_or_protectorate = no } } 
 			text = first_contact.250.A
 		}
 		name = {
-			trigger = {
-				owner = {
-					is_domesticator_or_protectorate = yes
-				}
-			}
+			trigger = { owner = { is_domesticator_or_protectorate = yes } }
 			text = first_contact.250.A.domesticators
 		}
 		hidden_effect = {
@@ -2584,7 +2577,6 @@ first_contact_event = {
 		}
 		trigger = {
 			owner = { is_domesticator_or_protectorate = no }
-			}
 		}
 		hidden_effect = {
 			event_target:fleet_to_seize = {
