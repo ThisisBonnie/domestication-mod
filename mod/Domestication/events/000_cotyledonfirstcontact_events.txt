@@ -302,22 +302,9 @@ first_contact_event = {
 	}
 
 	#you can see their ship, so attempt to capture it
-	#Enabled option to capture ship if you have the civic. Will currently use the base events.
+	# Alternate option to capture ship if you have the civic.
 	option = {
-		name = { 
-			trigger = {
-				owner = {
-					is_domesticator_or_protectorate = no 
-				}
-			}
-			text = first_contact.15.B 
-		}
-		name = { 
-			trigger = {
-				owner = { is_domesticator_or_protectorate = yes } 
-			}
-			text = first_contact.15.domesticators
-		}
+		name = first_contact.15.B
 		custom_tooltip = first_contact.10.B.tooltip
 		icon = {
 			icon = GFX_option_icon_hostile
@@ -325,9 +312,9 @@ first_contact_event = {
 		}
 		trigger = {
 			owner = {
-				OR = {
+				AND = {
 					has_policy_flag = first_contact_attack_allowed
-					is_domesticator_or_protectorate = yes 
+					is_domesticator_or_protectorate = no
 				} 
 			}
 		}
@@ -369,6 +356,37 @@ first_contact_event = {
 		}
 	}
 
+	option = {
+		name = first_contact.15.B
+		custom_tooltip = first_contact.10.B.tooltip
+		icon = {
+			icon = GFX_option_icon_hostile
+			text = hostile_first_contact_tt
+		}
+		trigger = {
+			owner = { is_domesticator_or_protectorate = yes }
+		}
+		allow = {
+			custom_tooltip = {
+				text = any_civilian_ship_in_sensor_range
+				first_contact_can_capture_ship = yes
+			}
+		}
+		if = {
+			limit = {
+				contact_country = {
+					is_synthetic_empire = no
+					is_same_species = root.owner
+				}
+			}
+			set_first_contact_stage = default_end_stage_hostile_same_species
+		}
+		else = {
+			set_first_contact_stage = domesticator_hostile_ship_stage
+		}
+		set_first_contact_flag = hostile_first_contact_attempted
+	}
+	
 	option = {
 		name = first_contact.5.A
 		if = {
@@ -1042,14 +1060,14 @@ first_contact_event = {
 
 	#Domesticators
 	desc = {
-		text = first_contact.15.domesticator.desc
+		text = first_contact.15.domesticators.desc
 		trigger = {
 			exists = event_target:known_planet
 			owner = { is_domesticator_or_protectorate = yes }
 		}
 	}
 	desc = {
-		text = first_contact.15.domesticator.desc.no_planets
+		text = first_contact.15.domesticators.desc.no_planets
 		trigger = {
 			NOT = { exists = event_target:known_planet }
 			owner = { is_domesticator_or_protectorate = yes }
@@ -1814,7 +1832,6 @@ first_contact_event = {
 		first_contact_inform_intel = yes
 	}
 }
-#___
 # First contact: default meets hive
 first_contact_event = {
 	id = first_contact.103
@@ -2399,8 +2416,8 @@ first_contact_event = {
 # Interrogate = Gain intel, option to free back to owner or keep them as sophonts. opinion malus and less/more reaserch?
 # Learn more about thier biology = Society reaserch, no intel, big opinion malus haustoric implant reaserch option. MTTH delay then success or faliure?
 first_contact_event = {
-	id = first_contact.250
-	title = first_contact.250.name
+	id = first_contact.domesticators.250
+	title = first_contact.domesticators.250.name
 	desc = {
 		text = first_contact.250.desc
 		trigger = {
@@ -2485,18 +2502,12 @@ first_contact_event = {
 	after = {
 		set_site_progress_locked = no
 	}
-
+#Interrogation
 	option = {
-		name = { 
-			trigger = { owner = { is_domesticator_or_protectorate = no } } 
-			text = first_contact.250.A
-		}
-		name = {
-			trigger = { owner = { is_domesticator_or_protectorate = yes } }
-			text = first_contact.250.A.domesticators
-		}
+		name = first_contact.domesticators.250.A
 		hidden_effect = {
 			event_target:fleet_to_seize = {
+				#need to exile leader to save for later use.
 				destroy_fleet = this
 			}
 			contact_country = {
@@ -2508,59 +2519,13 @@ first_contact_event = {
 				country_event = { id = first_contact.252 }
 			}
 		}
-		if = {
-			limit = {
-				contact_country = {
-					is_gestalt = yes
-				}
-			}
+	
 			set_first_contact_stage = default_end_stage_hostile_with_crew_hard
-		}
-		else_if = {
-			limit = {
-				contact_country = {
-					OR = {
-						has_trait = trait_weak
-						has_trait = trait_docile
-					}
-				}
-			}
-			hidden_effect = { set_first_contact_flag = weak_interrogees }
-			set_first_contact_stage = default_end_stage_hostile_with_crew_easy
-		}
-		else_if = {
-			limit = {
-				contact_country = {
-					OR = {
-						has_trait = trait_strong
-						has_trait = trait_very_strong
-					}
-				}
-			}
-			hidden_effect = { set_first_contact_flag = strong_interrogees }
-			set_first_contact_stage = default_end_stage_hostile_with_crew_hard
-		}
-		else = {
-			set_first_contact_stage = default_end_stage_hostile_with_crew
-		}
-
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 0
-				owner = {
-					OR = {
-						is_homicidal = yes
-						has_ethic = ethic_fanatic_xenophobe
-					}
-				}
-			}
-		}
 	}
-	# Disabling this option for now if you have the civic. will replace it with the implant option later
+	#vivisection. replace with implant
 	option = {
 		name = {
-			text = first_contact.250.B
+			text = first_contact.domesticators.250.B
 			trigger = {
 				contact_country = {
 					is_machine_empire = no
@@ -2568,15 +2533,12 @@ first_contact_event = {
 			}
 		}
 		name = {
-			text = first_contact.250.B.machine
+			text = first_contact.250.domesticators.B.machine
 			trigger = {
 				contact_country = {
 					is_machine_empire = yes
 				}
 			}
-		}
-		trigger = {
-			owner = { is_domesticator_or_protectorate = no }
 		}
 		hidden_effect = {
 			event_target:fleet_to_seize = {
@@ -2591,130 +2553,16 @@ first_contact_event = {
 				country_event = { id = first_contact.253 }
 			}
 		}
-		custom_tooltip = first_contact.250.B.tooltip
-		set_first_contact_stage = default_end_stage_hostile_with_vivisection
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 5
-				owner = { is_xenophobe = yes }
-			}
-		}
-	}
-	option = {
-		name = first_contact.250.C
-		trigger = {
-			owner = {
-				is_homicidal = yes
-				NOT = { has_valid_civic = civic_hive_devouring_swarm }
-			}
-		}
-		hidden_effect = {
-			event_target:fleet_to_seize = {
-				destroy_fleet = this
-			}
-			contact_country = {
-				add_opinion_modifier = { #it accumulates
-					who = root.owner
-					modifier = opinion_hostile_first_contact
-				}
-				add_opinion_modifier = {
-					who = root.owner
-					modifier = opinion_hostile_first_contact
-				}
-				first_contact_send_fleets_mia = yes
-				country_event = { id = first_contact.254 }
-			}
-		}
-		owner = {
-			add_monthly_resource_mult = {
-				resource = unity
-				value = @tier2unityreward
-				min = @tier2unitymin
-			}
-		}
-		custom_tooltip = first_contact.250.C.homicidal_tooltip
-		set_first_contact_stage = default_end_stage_hostile_no_crew
-		ai_chance = {
-			factor = 1
-			modifier = {
-				factor = 100
-				owner = { has_civic = civic_machine_terminator }
-			}
-		}
-	}
-	option = {
-		name = first_contact.250.C.devourers
-		trigger = {
-			owner = { has_valid_civic = civic_hive_devouring_swarm }
-		}
-		if = {
-			limit = {
-				contact_country = { is_synthetic_empire = yes }
-			}
-			owner = {
-				add_resource = {
-					influence = 50
-				}
-				add_monthly_resource_mult = {
-					resource = alloys
-					value = @tier1materialreward
-					min = @tier1materialmin
-				}
-			}
-		}
-		else_if = {
-			limit = { contact_country = { is_lithoid = yes } }
-			owner = {
-				add_resource = {
-					influence = 50
-				}
-				add_monthly_resource_mult = {
-					resource = minerals
-					value = @tier1materialreward
-					min = @tier1materialmin
-				}
-			}
-		}
-		else = {
-			owner = {
-				add_resource = {
-					influence = 50
-				}
-				add_monthly_resource_mult = {
-					resource = food
-					value = @tier1materialreward
-					min = @tier1materialmin
-				}
-			}
-		}
-		hidden_effect = {
-			event_target:fleet_to_seize = {
-				destroy_fleet = this
-			}
-			contact_country = {
-				add_opinion_modifier = {
-					who = root.owner
-					modifier = opinion_hostile_first_contact_hungry
-				}
-				first_contact_send_fleets_mia = yes
-				country_event = { id = first_contact.254 }
-			}
-		}
-		custom_tooltip = first_contact.250.C.homicidal_tooltip
-		set_first_contact_stage = default_end_stage_hostile_no_crew
-
-		ai_chance = {
-			factor = 100
-		}
+		custom_tooltip = first_contact.250.domesticators.B.tooltip
+		set_first_contact_stage = default_end_stage_hostile_with_implant
 	}
 }
 
 # You capture the ship intact but no living hostages, computer systems intact
-# probably will replace this event with one that lets the inhabitants escape with a smaler opinion malus
+# alterd to allow the inhabitants to escape, with lesser opinion malus
 first_contact_event = {
-	id = first_contact.260
-	title = first_contact.260.name
+	id = first_contact.domesticators.260
+	title = first_contact.domesticators.260.name
 	desc = {
 		text = first_contact.260.desc
 		trigger = {
@@ -2724,7 +2572,7 @@ first_contact_event = {
 		}
 	}
 	desc = {
-		text = first_contact.260.desc.machine_victim
+		text = first_contact.260.domesticators.desc.machine_victim
 		trigger = {
 			contact_country = {
 				is_machine_empire = yes
@@ -2732,7 +2580,7 @@ first_contact_event = {
 		}
 	}
 	desc = {
-		text = first_contact.260.desc.hive_victim
+		text = first_contact.260.domesticators.desc.hive_victim
 		trigger = {
 			contact_country = {
 				is_hive_empire = yes
@@ -2753,17 +2601,19 @@ first_contact_event = {
 		reverse_first_contact = { set_first_contact_flag = seen_aliens }
 
 		event_target:fleet_to_seize = {
-			destroy_fleet = this
+			destroy_fleet = {
+				target = this
+				kill_leader = no
+			}
 		}
-
 		contact_country = {
 			add_opinion_modifier = {
 				who = root.owner
-				modifier = opinion_hostile_first_contact
+				modifier = opinion_hostile_first_contact_crew_escape
 			}
 			first_contact_send_fleets_mia = yes
 		}
-		contact_country = { country_event = { id = first_contact.262 } }
+		contact_country = { country_event = { id = first_contact.domesticators.262 } }
 	}
 
 	after = {
@@ -2776,13 +2626,138 @@ first_contact_event = {
 	}
 }
 
+# Notification for other side
+# Need to double check logic. not quite sure what ones i need to keep
+country_event = {
+	id = first_contact.domesticators.262
+	title = first_contact.domesticators.262.name
+	desc = {
+		text = first_contact.domesticators.262.desc.normal
+		trigger = {
+			owner = { is_gestalt = no }
+			from.owner = {
+				is_machine_empire = no
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+		}
+	}
+	desc = {
+		text = first_contact.domesticators.262.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+			from.owner = {
+				is_machine_empire = no
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+		}
+	}
+	desc = {
+		text = first_contact.262.domesticators.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+			from.owner = {
+				is_machine_empire = no
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+		}
+	}
+	# desc = {
+	# 	text = first_contact.262.domesticators.desc.machine_enemy.normal
+	# 	trigger = {
+	# 		owner = { is_hive_empire = no }
+	# 		from.owner = {
+	# 			is_machine_empire = yes
+	# 		}
+	# 	}
+	# }
+	# desc = {
+	# 	text = first_contact.262.desc.machine_enemy.hive
+	# 	trigger = {
+	# 		owner = { is_hive_empire = yes }
+	# 		from.owner = {
+	# 			is_machine_empire = yes
+	# 		}
+	# 	}
+	# }
+	# desc = {
+	# 	text = first_contact.262.desc.machine_enemy.machine
+	# 	trigger = {
+	# 		owner = { is_machine_empire = yes }
+	# 		from.owner = {
+	# 			is_machine_empire = yes
+	# 		}
+	# 	}
+	# }
+	# desc = {
+	# 	text = first_contact.262.desc.hive_enemy.normal
+	# 	trigger = {
+	# 		owner = { is_machine_empire = no }
+	# 		from.owner = {
+	# 			is_hive_empire = yes
+	# 		}
+	# 	}
+	# }
+	# desc = {
+	# 	text = first_contact.262.desc.hive_enemy.machine
+	# 	trigger = {
+	# 		owner = { is_machine_empire = yes }
+	# 		from.owner = {
+	# 			is_hive_empire = yes
+	# 		}
+	# 	}
+	# }
+	# desc = {
+	# 	text = first_contact.262.desc.hive_enemy.hive
+	# 	trigger = {
+	# 		owner = { is_hive_empire = yes }
+	# 		from.owner = {
+	# 			is_hive_empire = yes
+	# 		}
+	# 	}
+	# }
+	picture = GFX_evt_face_off_in_space
+	show_sound = event_faceoff_in_space
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_hostile = from.owner
+	}
+
+	option = {
+		name = {
+			text = WORRYING
+			trigger = {
+				is_militarist = no
+				OR = {
+					is_pacifist = yes
+					is_xenophobe = no
+				}
+			}
+		}
+		name = {
+			text = first_contact.272.B #deliberate
+			trigger = {
+				OR = {
+					is_militarist = yes
+					is_xenophobe = yes
+				}
+				is_pacifist = no
+			}
+		}
+		if = {
+			limit = { from = { has_first_contact_flag = fleets_sent_mia } }
+			custom_tooltip = first_contact_fleets_mia_tooltip
+		}
+	}
+}
+
 # You accidentally destroy the ship
-#depending on previous questions either will leave this event in or have it not happen
 first_contact_event = {
-	id = first_contact.270
-	title = first_contact.270.name
-	desc = first_contact.270.desc
-	desc = first_contact.270.desc2
+	id = first_contact.domesticators.270
+	title = first_contact.domesticators.270.name
+	desc = first_contact.domesticators.270.desc
+	desc = first_contact.domesticators.270.desc2
 	picture = GFX_evt_exploding_ship
 	show_sound = event_ship_explosion
 
@@ -2860,8 +2835,8 @@ first_contact_event = {
 
 # failure, they escaped
 first_contact_event = {
-	id = first_contact.280
-	title = first_contact.280.name
+	id = first_contact.domesticators.280
+	title = first_contact.domesticators.280.name
 	desc = {
 		trigger = { NOT = { exists = event_target:fleet_to_seize } }
 		text = first_contact.280.desc.just_left
@@ -2974,7 +2949,6 @@ first_contact_event = {
 		set_first_contact_stage = default_hostile_systems_stage
 	}
 }
-
 
 
 # Hostile interrogations end

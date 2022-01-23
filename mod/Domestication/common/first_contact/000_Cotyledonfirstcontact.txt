@@ -44,101 +44,6 @@ base_contact_set = {
 	}
 }
 
-# default empires - start off event
-default_stage_1 = {
-	icon = GFX_firstcontact_icon_progress
-	picture = GFX_evt_star_chart
-
-	difficulty = 5
-
-	stage_event = { # no inhabited systems known
-		summary = fcsum_stage_1_summary
-		event_weight = {
-			weight = 10
-			modifier = {
-				factor = 0
-				contact_country = {
-					any_system_within_border = {
-						root.owner = {
-							intel_level = {
-								level > low
-								system = prev
-							}
-						}
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				contact_country = {
-					any_owned_fleet = {
-						is_within_borders_of = root.owner
-					}
-				}
-			}
-		}
-		event = first_contact.5
-	}
-
-	stage_event = { # no inhabited systems known, they are scanning us
-		summary = fcsum_stage_1_summary
-		event_weight = {
-			weight = 10
-			modifier = {
-				factor = 0
-				contact_country = {
-					any_system_within_border = {
-						root.owner = {
-							intel_level = {
-								level > low
-								system = prev
-							}
-						}
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				NOT = {
-					contact_country = {
-						any_owned_fleet = {
-							is_within_borders_of = root.owner
-						}
-					}
-				}
-			}
-		}
-		event = first_contact.10
-	}
-
-	stage_event = { # inhabited systems known
-		summary = fcsum_stage_1_summary
-		event_weight = {
-			weight = 10
-			modifier = {
-				factor = 0
-				NOT = {
-					contact_country = {
-						any_system_within_border = {
-							root.owner = {
-								intel_level = {
-									level > low
-									system = prev
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		event = first_contact.15
-	}
-
-	on_roll_failed = {
-		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = early_fc_random_events }
-	}
-}
-
 # default empires - event for setting up the story
 # Disabled the other story line events for now. Will add unique versions of the events later
 # Speaking in Riddles, Monstrous Noises, Apparent Hostility, Hummers and Octopodes stories
@@ -249,6 +154,7 @@ default_stage_2 = {
 	}
 
 	# Speaking in Riddles story
+	# disabled for domesticators
 	stage_event = {
 		icon = GFX_firstcontact_icon_question
 		summary = fcsum_riddles_1
@@ -267,6 +173,7 @@ default_stage_2 = {
 							}
 						}
 						is_homicidal = yes
+						is_domesticator_or_protectorate = yes
 					}
 				}
 			}
@@ -284,6 +191,7 @@ default_stage_2 = {
 	}
 
 	# Monstrous Noises story
+	# Disabled for domesticators
 	stage_event = {
 		icon = GFX_firstcontact_icon_warship_progress
 		summary = fcsum_monstrous_noises_1
@@ -296,6 +204,7 @@ default_stage_2 = {
 						has_country_flag = first_contact_monstrous_noises_chain
 						is_gestalt = yes
 						is_homicidal = yes
+						is_domesticator_or_protectorate = yes
 					}
 				}
 			}
@@ -454,6 +363,7 @@ default_stage_2 = {
 
 
 # default empires - you tried to hack them, see if you succeeded
+# If you have the cautious policy, reduce chance of failure ( detection ), increased chance of failure ( undetected ), increased chance of success ( undetected )
 default_hacking_stage_main = {
 	picture = GFX_evt_spymaster
 
@@ -478,6 +388,12 @@ default_hacking_stage_main = {
 						who = root.contact_country
 						ratio >= 1.2
 					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				owner ={ 
+					has_policy_flag = first_contact_cautious
 				}
 			}
 		}
@@ -508,6 +424,7 @@ default_hacking_stage_main = {
 		event = first_contact.205
 	}
 	# failure, undetected (incapable but careful)
+	# increased chance if cautious
 	stage_event = {
 		icon = GFX_firstcontact_icon_fail
 		summary = fcsum_hacking_fail
@@ -526,6 +443,12 @@ default_hacking_stage_main = {
 						who = root.contact_country
 						ratio <= 0.8
 					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				owner ={ 
+					has_policy_flag = first_contact_cautious
 				}
 			}
 			modifier = {
@@ -550,6 +473,7 @@ default_hacking_stage_main = {
 		event = first_contact.210
 	}
 	# failure, detected (foiled)
+	# reduced chance if cautious
 	stage_event = {
 		icon = GFX_firstcontact_icon_fail
 		summary = fcsum_hacking_fail
@@ -588,32 +512,18 @@ default_hacking_stage_main = {
 					has_modifier = first_contact_skill_4
 				}
 			}
+			modifier = {
+				factor = 0.8
+				owner ={ 
+					has_policy_flag = first_contact_cautious
+				}
+			}
 		}
 		event = first_contact.215
 	}
 
 	on_roll_failed = {
 		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = hostile_fc_random_events }
-	}
-}
-
-# hacking end stage
-default_end_stage_hacking = {
-	icon = GFX_firstcontact_icon_success
-	picture = GFX_evt_spymaster
-
-	difficulty = 1 #easy peasy
-
-	stage_event = {
-		summary = fcsum_comms_established
-		event_weight = {
-			weight = 10
-		}
-		event = first_contact.220
-	}
-
-	on_roll_failed = {
-		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = late_fc_random_events }
 	}
 }
 
@@ -684,6 +594,12 @@ default_hostile_ship_stage = {
 					has_modifier = first_contact_skill_4
 				}
 			}
+			modifier = {
+				factor = 1.1
+				owner = {
+					has_policy_flag = first_contact_cautious
+				}
+			}
 		}
 		event = first_contact.250
 	}
@@ -744,6 +660,12 @@ default_hostile_ship_stage = {
 				factor = 0.7
 				owner = {
 					has_modifier = first_contact_skill_4
+				}
+			}
+			modifier = {
+				factor = 0.8
+				owner = {
+					has_policy_flag = first_contact_cautious
 				}
 			}
 		}
@@ -887,4 +809,221 @@ default_end_stage_hostile_no_crew = {
 	on_roll_failed = {
 		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = hostile_fc_random_events }
 	}
+}
+
+# Alt hostile Chain
+domesticator_hostile_ship_stage ={ 
+	picture = GFX_evt_face_off_in_space
+
+	difficulty = 2
+
+	# You capture them and their ship alive (best)
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_success
+		summary = fcsum_hostile_ship_best
+		event_weight = {
+			weight = 2
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					contact_country = {
+						any_owned_fleet = {
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				contact_country = {
+					is_gestalt = yes
+				}
+			}
+			modifier = {
+				factor = 1.5
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					tech_unlocked_ratio = {
+						who = root.contact_country
+						ratio >= 1.2
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 1.3
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					has_policy_flag = first_contact_cautious
+				}
+			}
+		}
+		event = first_contact.domesticators.250
+	}
+
+	# You capture the ship intact but no living hostages, computer systems intact
+	stage_event = {
+		icon = GFX_firstcontact_icon_warship_progress
+		summary = fcsum_domesticator_ship_none_alive
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					contact_country = {
+						any_owned_fleet = {
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 1.25
+				contact_country = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+		}
+		event = first_contact.domesticators.260
+	}
+
+	# You accidentally destroy the ship
+	stage_event = {
+		icon = GFX_firstcontact_icon_fail
+		summary = fcsum_domesticator_ship_none_destroyed
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 0
+				first_contact_can_capture_ship = no
+			}
+			modifier = {
+				factor = 0.9
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 0.8
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 0.7
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+			modifier = {
+				factor = 0.4
+				owner = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+			modifier = {
+				factor = 0.6
+				owner = {
+					has_policy_flag = first_contact_cautious
+				}
+			}
+		}
+		event = first_contact.domesticators.270
+	}
+
+	# failure, they escaped
+	stage_event = {
+		icon = GFX_firstcontact_icon_fail
+		summary = fcsum_domesticator_ship_escaped
+		event_weight = {
+			weight = 1
+			modifier = {
+				factor = 2
+				contact_country = {
+					NOT = {
+						any_owned_fleet = {
+							is_civilian = yes
+							is_within_borders_of = root.owner
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 1.33
+				contact_country = {
+					has_policy_flag = first_contact_cautious
+				}
+			}
+			modifier = {
+				factor = 1.2
+				owner = {
+					tech_unlocked_ratio = {
+						who = root.contact_country
+						ratio <= 0.8
+					}
+				}
+			}
+			modifier = {
+				factor = 0.9
+				owner = {
+					has_modifier = first_contact_skill_2
+				}
+			}
+			modifier = {
+				factor = 0.8
+				owner = {
+					has_modifier = first_contact_skill_3
+				}
+			}
+			modifier = {
+				factor = 0.7
+				owner = {
+					has_modifier = first_contact_skill_4
+				}
+			}
+			modifier ={ 
+				factor = 1.3
+				owner = {
+					has_policy_flag = first_contact_proactive
+				}
+			}
+		}
+		event = first_contact.domesticators.280
+	}
+
+	on_roll_failed = {
+		standard_first_contact_on_roll_failed = { RANDOM_EVENTS = hostile_fc_random_events }
+	}
+}
+default_end_stage_hostile_with_implant = {
+	
 }

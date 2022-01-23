@@ -38,3 +38,13 @@ opinion_our_domesticated_hivemind = {
 	}
 	unique = yes
 }
+
+opinion_hostile_first_contact_crew_escape = {
+	opinion ={
+		base = -75
+	}
+	accumulative = yes
+	decay = {
+		base = 1
+	}
+}
