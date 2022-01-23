@@ -1,25 +1,18 @@
 ﻿l_english:
-#Im no writer, But i can code hopefully. Ill leave simple descriptors for what each one is for someone better at writing then me. Ill note what descriptions need replacing
- fcsum_new_sophonts:0 "This is a test summary for the new sophonts first contact event"
- civic_domesticators:0 "Dummy Domesticators"
- civic_domesticators_desc:0 "Dummy Civic for dummy testers"
- civic_tooltop_dummy:0 "This is a dummy civic for testing purposes"
+# leaving these as dummy descriptions for later editing. Dont want to get stuck writing. noting which ones need doing - Bunni
 # Replace Description
  first_contact.1.desc.domesticator:0 "This description is for if you have the domesticators civic in 'first_contact.1'"
  fcsum_base_contact_domesticators_summary:0 "i used the domesticators civic for this first contact!"
- first_contact_start_dummy_title:0 "Im a dummy title"
- first_contact.1.desc.dummy.default:0 "Im a dummy replacement desc"
 # Replace Description
  first_contact.5.domesticators.desc:0 "This description is for if you have the domesticators civic in first_contact.5 "
  first_contact.15.domesticators:0 "We must learn more about thier species"
- DUMMY_NAME:0 "Im a dummy replacement name"
 # Replace Description
  first_contact.10.Domesticators.desc.proactive:0 "This description is for if you have the domesticators civic in first_contact.10 and have the proactive policy"
  first_contact.10.Domesticators.desc.cautious:0 "This description is for if you have the domesticators civic in first_contact.10 and have the cautious policy "
  first_contact.10.domesticators:0 "Capture that ship!"
 # Replace Description
- first_contact.15.domesticator.desc:0 "This description is for if you have the domesticators civic in first_contact.15 and they habit planets"
- first_contact.15.domesticator.desc.no_planets:0 "This description is for if you have the domesticators civic in first_contact.15 and they do no habit planets"
+ first_contact.15.domesticators.desc:0 "This description is for if you have the domesticators civic in first_contact.15 and they habit planets"
+ first_contact.15.domesticators.desc.no_planets:0 "This description is for if you have the domesticators civic in first_contact.15 and they do no habit planets"
 # Replace Description
  first_contact.50.desc.domesticators:0 "This description is for if you have the domesticators civic in first_contact.50 and you can hack them"
  first_contact.50.C1.domesticators:0 "We must learn more!"
